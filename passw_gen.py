@@ -68,6 +68,7 @@ def pw_gen():
         for i in range(length):
             fine.append(str(final[i]))
         snap = "".join(fine)
+        print(snap)
         # adding functionality of cpoying the result to clipboard
         pyperclip.copy(snap)
         pyperclip.paste()
