@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Sep 13 23:09:08 2018
-
 @author: Snik
 """
 
@@ -103,5 +102,7 @@ while( qq in ['Y','y', 'yes','YES'] ):
 else:
     print("Have a nice day !!")
 
+
+   
 
 
