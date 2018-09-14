@@ -105,5 +105,21 @@ else:
 
 
    
+# adding functionality of searching through the file created
 
+search = str(input("Do you want to search for any password : "))
+if search in ['Y','y', 'yes','YES']:
+    if os.path.isfile("secured_pw.txt") == True:
+        query = str(input("Search with the saved name for the password : "))
+        os.chmod('secured_pw.txt', 0o777)
+        searchfile = open("secured_pw.txt", "r")
+        for line in searchfile:
+            if query in line: 
+                print(line)
+                os.chmod('secured_pw.txt', 0o444) 
+        searchfile.close()
+    else:
+        print("File does not exist")
+else:
+    print("Thanks for using Snapnab_N1")
 
