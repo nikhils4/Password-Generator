@@ -5,7 +5,6 @@ Created on Thu Sep 13 23:09:08 2018
 @author: Snik
 """
 
-print("Snapnab")
 import random
 import os
 import os.path
@@ -105,7 +104,6 @@ else:
     print("Have a nice day !!")
 
 
-    
-jsdahf = input()
+   
 
 
