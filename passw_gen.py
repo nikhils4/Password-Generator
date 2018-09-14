@@ -73,7 +73,6 @@ def pw_gen():
         # adding functionality of cpoying the result to clipboard
         pyperclip.copy(snap)
         pyperclip.paste()
-        print(snap)
         ques = str(input("Do you want to save the password : "))
         if ques in ['Y','y', 'yes','YES']:
             nab = str(input("Enter the name to identify your password in future : "))
@@ -106,6 +105,7 @@ else:
     print("Have a nice day !!")
 
 
-
+    
+jsdahf = input()
 
 
