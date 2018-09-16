@@ -3,14 +3,11 @@
 Created on Thu Sep 13 23:09:08 2018
 @author: Snik
 """
-
 import random
 import os
 import os.path
 import pyperclip
-
 print("\t\t\t\tWelcome to paswword generator\n\n")
-
 #adding functionality of menu based operations
 def menu():
     print("\n\n\t\t\t\tMENU\t\t\t\t")
@@ -27,7 +24,6 @@ def menu():
     if option == 4:
         print("Thanks for using Snapnab_N1 Password Generator")
         exit()
-   
 def del_file():
     ques1 = str(input("Are you sure :  "))
     if ques1 in ['Y','y', 'yes','YES']:
@@ -41,7 +37,6 @@ def del_file():
             menu()
     else:
         menu()
-
 def pw_gen():
         length = int(input("Enter minimum of 6 as length of password : "))  #taking input for the length of the password 
 
@@ -83,8 +78,7 @@ def pw_gen():
                 count_n += 1
             else:
                 count_spl += 1
-        # Just a sanity check of the password strength
-        
+        # Just a sanity check of the password strength        
         if count_l != 0 and count_spl != 0 and count_u != 0 and count_n != 0:
             print("Great")
             print("Your password contains : ",count_spl, " special characters.")
@@ -106,18 +100,16 @@ def pw_gen():
             pyperclip.paste()
         ques = str(input("Do you want to save the password : "))
         if ques in ['Y','y', 'yes','YES']:
-            nab = str(input("\nEnter the name to identify your password in future : "))
+            nn = str(input("\nEnter the name to identify your password in future : "))
             if os.path.isfile("secured_pw.txt") == True:
                 os.chmod("secured_pw.txt", 0o777) # changing file permission to write using octal notation
             with open('secured_pw.txt', 'a') as f: # opening the file in access mode
-                print(nab, "-", snap, file=f)
+                print(nn, "-", snap, file=f)
                 os.chmod('secured_pw.txt', 0o444) # changing file permission to read only using octal notation
                 f.close() # closing the file
             menu()
         else:
             menu()
-            
-   
 # adding functionality of searching through the file created
 def pw_search():
         if os.path.isfile("secured_pw.txt") == True:
@@ -134,8 +126,4 @@ def pw_search():
             print("File does not exist")
             menu()
 
-
-
-
 menu()
- 
