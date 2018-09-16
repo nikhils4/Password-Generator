@@ -11,7 +11,7 @@ print("\t\t\t\tWelcome to paswword generator\n\n")
 #adding functionality of menu based operations
 def menu():
     print("\n\n\t\t\t\tMENU\t\t\t\t")
-    print("\t\t\t\t1. Generate password\n\t\t\t\t2. Delete password file\n\t\t\t\t3. Search for password\n\t\t\t\t4. Exit")
+    print("\t\t\t\t1. Generate password\n\t\t\t\t2. Delete password file\n\t\t\t\t3. Search for password\n\t\t\t\t4. Display saved p/w name\n\t\t\t\t5. Exit")
     
     option = int(input("Enter the number for operation : "))
     
@@ -22,11 +22,14 @@ def menu():
     if option == 3:
         pw_search()
     if option == 4:
+        disp_pw_name()
+    if option == 5:
         print("Thanks for using Snapnab_N1 Password Generator")
         exit()
+    
 def del_file():
     ques1 = str(input("Are you sure :  "))
-    if ques1 in ['Y','y', 'yes','YES']:
+    if ques1 in ['Y','y', 'yes','YES', 'Yes']:
         if os.path.isfile("secured_pw.txt") == True:
             os.chmod("secured_pw.txt", 0o777)
             os.remove("secured_pw.txt")
@@ -47,7 +50,7 @@ def pw_gen():
         lower_l = list(lower)
         upper = "PQOWKSJDIEHFURZXGYCTMVNB"
         upper_l = list(upper)
-        spl = "#@$&()+?#@$&()+?"
+        spl = "#@$&()+?#@$&()+?"# whenever change this string keep its length at least 10`
         spl_l = list(spl)
         fin = []
         # final addition to list and then converting to string
@@ -95,18 +98,19 @@ def pw_gen():
         print("\nThe password is : ",snap)
         # adding functionality of cpoying the result to clipboard
         copy = str(input("Do you want to copy the password to the clipboard : "))
-        if copy in ['Y','y', 'yes','YES']:
+        if copy in ['Y','y', 'yes','YES', 'Yes']:
             pyperclip.copy(snap)
             pyperclip.paste()
         ques = str(input("Do you want to save the password : "))
-        if ques in ['Y','y', 'yes','YES']:
+        if ques in ['Y','y', 'yes','YES', 'Yes']:
             nn = str(input("\nEnter the name to identify your password in future : "))
             if os.path.isfile("secured_pw.txt") == True:
                 os.chmod("secured_pw.txt", 0o777) # changing file permission to write using octal notation
             with open('secured_pw.txt', 'a') as f: # opening the file in access mode
-                print(nn, "-", snap, file=f)
+                print(nn, "-", snap , file=f)
                 os.chmod('secured_pw.txt', 0o444) # changing file permission to read only using octal notation
                 f.close() # closing the file
+            print("\nPassword was sucessfully saved.\n")
             menu()
         else:
             menu()
@@ -125,5 +129,28 @@ def pw_search():
         else:
             print("File does not exist")
             menu()
+
+
+def disp_pw_name():
+    if os.path.isfile("secured_pw.txt") == True:
+        os.chmod('secured_pw.txt', 0o777)
+        with open("secured_pw.txt") as f:
+            pw_name = [line.split(None, 1) for line in f] # split the line one time only
+            display = []
+            l_pw_name = len(pw_name)
+            for i in range(l_pw_name):
+                display.append(pw_name[i][0])
+            display = sorted(display)
+            l_display = len(display)
+            for i in range(l_display):
+                print(i+1, "->",display[i])
+            os.chmod('secured_pw.txt', 0o444)
+            f.close()
+            menu()
+            
+    else:
+        print("\nNo saved file found. Please generate the password and save it.\n")
+        menu()
+            
 
 menu()
