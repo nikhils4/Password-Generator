@@ -9,9 +9,40 @@ import os
 import os.path
 import pyperclip
 
+print("\t\t\t\tWelcome to paswword generator\n\n")
+
+#adding functionality of menu based operations
+def menu():
+    print("\n\n\t\t\t\tMENU\t\t\t\t")
+    print("\t\t\t\t1. Generate password\n\t\t\t\t2. Delete password file\n\t\t\t\t3. Search for password\n\t\t\t\t4. Exit")
+    
+    option = int(input("Enter the number for operation : "))
+    
+    if option == 1:
+        pw_gen()
+    if option == 2:
+        del_file()
+    if option == 3:
+        pw_search()
+    if option == 4:
+        print("Thanks for using Snapnab_N1 Password Generator")
+        exit()
+   
+def del_file():
+    ques1 = str(input("Are you sure :  "))
+    if ques1 in ['Y','y', 'yes','YES']:
+        if os.path.isfile("secured_pw.txt") == True:
+            os.chmod("secured_pw.txt", 0o777)
+            os.remove("secured_pw.txt")
+            print("File has been sucessfully removed.\n")
+            menu()
+        else:
+            print("The file does not exist\n")
+            menu()
+    else:
+        menu()
+
 def pw_gen():
-    ques1 = str(input("Do you want to remove the currently existing password file : "))
-    if ques1 in ['N','n','no','NO']:
         length = int(input("Enter minimum of 6 as length of password : "))  #taking input for the length of the password 
 
         while length < 6:       #checking for the valid input 
@@ -24,7 +55,6 @@ def pw_gen():
         spl = "#@$&()+?#@$&()+?"
         spl_l = list(spl)
         fin = []
-        num_l = []
         # final addition to list and then converting to string
         for i in range(length):
         #shuffeling all the elements list in order to get the new password everytime 
@@ -68,58 +98,44 @@ def pw_gen():
         for i in range(length):
             fine.append(str(final[i]))
         snap = "".join(fine)
-        print(snap)
+        print("\nThe password is : ",snap)
         # adding functionality of cpoying the result to clipboard
-        pyperclip.copy(snap)
-        pyperclip.paste()
+        copy = str(input("Do you want to copy the password to the clipboard : "))
+        if copy in ['Y','y', 'yes','YES']:
+            pyperclip.copy(snap)
+            pyperclip.paste()
         ques = str(input("Do you want to save the password : "))
         if ques in ['Y','y', 'yes','YES']:
-            nab = str(input("Enter the name to identify your password in future : "))
+            nab = str(input("\nEnter the name to identify your password in future : "))
             if os.path.isfile("secured_pw.txt") == True:
                 os.chmod("secured_pw.txt", 0o777) # changing file permission to write using octal notation
             with open('secured_pw.txt', 'a') as f: # opening the file in access mode
                 print(nab, "-", snap, file=f)
                 os.chmod('secured_pw.txt', 0o444) # changing file permission to read only using octal notation
                 f.close() # closing the file
-            print("Thanks for using password generator")
+            menu()
         else:
-            print("Thanks for using password generator")
+            menu()
             
-    else:
-        if os.path.isfile("secured_pw.txt") == True:
-            os.chmod("secured_pw.txt", 0o777)
-            os.remove("secured_pw.txt")
-            print("File has been sucessfully removed.")
-            print("Thanks for using password generator.")
-        else:
-            print("The file does not exist")
-            print("Thanks for using password generator.")
-
-pw_gen()
-qq = str(input("Do you want to generate more password : "))
-while( qq in ['Y','y', 'yes','YES'] ):
-    pw_gen()
-    qq = str(input("Do you want to generate more password : "))
-else:
-    print("Have a nice day !!")
-
-
    
 # adding functionality of searching through the file created
+def pw_search():
+        if os.path.isfile("secured_pw.txt") == True:
+            query = str(input("Search with the saved name for the password : "))
+            os.chmod('secured_pw.txt', 0o777)
+            searchfile = open("secured_pw.txt", "r")
+            for line in searchfile:
+                if query in line: 
+                    print(line)
+                    os.chmod('secured_pw.txt', 0o444) 
+            searchfile.close()
+            menu()
+        else:
+            print("File does not exist")
+            menu()
 
-search = str(input("Do you want to search for any password : "))
-if search in ['Y','y', 'yes','YES']:
-    if os.path.isfile("secured_pw.txt") == True:
-        query = str(input("Search with the saved name for the password : "))
-        os.chmod('secured_pw.txt', 0o777)
-        searchfile = open("secured_pw.txt", "r")
-        for line in searchfile:
-            if query in line: 
-                print(line)
-                os.chmod('secured_pw.txt', 0o444) 
-        searchfile.close()
-    else:
-        print("File does not exist")
-else:
-    print("Thanks for using Snapnab_N1")
 
+
+
+menu()
+ 
