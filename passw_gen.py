@@ -26,16 +26,28 @@ def drive():
             gauth.LocalWebserverAuth()
             drive = GoogleDrive(gauth)
             
+            if os.path.isfile("dup.txt") == True:
+                ls = open('dup.txt','r+')
+                ls.truncate(0)
+                ls.close()
+            
+            os.chmod("secured_pw.txt", 0o777)
+            #copying the file content to another file
+            with open("secured_pw.txt") as f:
+                with open("dup.txt", "a") as f1:
+                    for line in f:
+                        f1.write(line)
+            f1.close()
+            os.chmod('secured_pw.txt', 0o444) # changing file permission to read only using octal notation
+            f.close()
             # file upload procedure
+            
             file_n = str(input("Enter the filename to be save in Google Drive : "))
             file1 = drive.CreateFile({'title': file_n + ' ' +  time.ctime()})
-            file1.SetContentFile('secured_pw.txt')
+            file1.SetContentFile('dup.txt')
             file1.Upload()
-            print("\nUploading......\n")
             print("File sucessfully uploaded !")
-            print("Closing.....")
-            time.sleep(7)
-            exit()
+            menu()
         else:
             menu()
     else:
@@ -48,7 +60,6 @@ def drive():
 def menu():
     print("\n\t\t\t\tMENU\t\t\t\t")
     print("\t\t\t\t1. Generate password\n\t\t\t\t2. Delete password file\n\t\t\t\t3. Search for password\n\t\t\t\t4. Display saved p/w name\n\t\t\t\t5. Save to Drive\n\t\t\t\t6. Exit")
-    
     option = int(input("Enter the number for operation : "))
     
     if option == 1:
