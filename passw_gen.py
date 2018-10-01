@@ -1,8 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Sep 13 23:09:08 2018
-@author: Snik
-"""
+
 import random
 import os
 import os.path
@@ -73,7 +69,7 @@ def menu():
     if option == 5:
         drive()
     if option == 6:
-        print("Thanks for using Snapnab_N1 Password Generator")
+        print("Thanks for using N1 Password Generator")
         exit()
     
 def del_file():
@@ -132,7 +128,9 @@ def pw_gen():
                 count_spl += 1
         # Just a sanity check of the password strength        
         if count_l != 0 and count_spl != 0 and count_u != 0 and count_n != 0:
-            print("Great")
+            print("Generating...")
+            time.sleep(1)
+            print("\n")
             print("Your password contains : ",count_spl, " special characters.")
             print("Your password contains : ",count_u, " uppercase characters.")
             print("Your password contains : ",count_n, " numbers.")
