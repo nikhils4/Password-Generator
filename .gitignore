@@ -2,4 +2,6 @@ secured_pw.txt
 dup.txt
 Exe file gen/
 Google Drive/
+token.json
+client_secrets.json
 *.spec

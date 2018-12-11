@@ -39,7 +39,7 @@ def drive():
             # file upload procedure
             
             file_n = str(input("Enter the filename to be save in Google Drive : "))
-            file1 = drive.CreateFile({'title': file_n + ' ' +  time.ctime()})
+            file1 = drive.CreateFile({'title': file_n + ' ' + time.ctime()})
             file1.SetContentFile('dup.txt')
             file1.Upload()
             print("File sucessfully uploaded !")
