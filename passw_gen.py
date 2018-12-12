@@ -6,6 +6,7 @@ import pyperclip
 
 import time
 
+
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
     
@@ -21,6 +22,7 @@ def drive():
             gauth = GoogleAuth()  # Authentication
             gauth.LocalWebserverAuth()
             drive = GoogleDrive(gauth)
+
             
             if os.path.isfile("dup.txt") == True:
                 ls = open('dup.txt','r+')
@@ -81,7 +83,7 @@ def del_file():
             print("File has been sucessfully removed.\n")
             menu()
         else:
-            print("The file does not exist\n")
+            print("No saved password\n")
             menu()
     else:
         menu()
@@ -157,7 +159,7 @@ def pw_gen():
                 print(nn, "-", snap , file=f)
                 os.chmod('secured_pw.txt', 0o444) # changing file permission to read only using octal notation
                 f.close() # closing the file
-            print("\nPassword was sucessfully saved.\n")
+            print("\nPassword was successfully saved.\n")
             menu()
         else:
             menu()
@@ -176,7 +178,6 @@ def pw_search():
         else:
             print("File does not exist")
             menu()
-
 
 def disp_pw_name():
     if os.path.isfile("secured_pw.txt") == True:
