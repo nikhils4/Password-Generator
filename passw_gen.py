@@ -71,7 +71,7 @@ def menu():
     if option == 5:
         drive()
     if option == 6:
-        print("Thanks for using N1 Password Generator")
+        print("Thanks for using Password Generator")
         exit()
     
 def del_file():
