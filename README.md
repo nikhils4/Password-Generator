@@ -12,10 +12,10 @@ To run on your local machine clone the repo and have thses four files in order t
 3. setup.py
 4. quickstart.py
 
-and then run '''bash pip install -r requirements.txt '''
+and then run --> pip install -r requirements.txt 
 
 Then run the program.
 
-Tip : to save all the modules name in a file use the command '''bash pip freeze > requirement.txt '''
+Tip : to save all the modules name in a file use the command (for any python project) --> bash pip freeze > requirement.txt
 
 Feedback is welcome !!
