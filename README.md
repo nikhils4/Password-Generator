@@ -16,6 +16,6 @@ and then run --> pip install -r requirements.txt
 
 Then run the program.
 
-Tip : to save all the modules name in a file use the command (for any python project) --> bash pip freeze > requirement.txt
+Tip : to save all the modules name in a file use the command (for any python project) --> pip freeze > requirement.txt
 
 Feedback is welcome !!
