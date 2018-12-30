@@ -18,4 +18,4 @@ Then run the program.
 
 Tip : to save all the modules name in a file use the command (for any python project) --> pip freeze > requirement.txt
 
-Feedback is welcome !!
+Feedback is welcome!!
